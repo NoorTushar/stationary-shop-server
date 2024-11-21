@@ -5,7 +5,7 @@ export type TCategory =
    | "Educational"
    | "Technology";
 
-export interface IStProducts {
+export interface IProducts {
    name: string;
    brand: string;
    price: number;
