@@ -108,10 +108,10 @@ const deleteSingleOrder = async (req: Request, res: Response) => {
          success: true,
          data: result,
       });
-   } catch (error) {
+   } catch (error: any) {
       console.log(error);
       res.status(404).send({
-         message: "Error while deleting the order.",
+         message: error.message || "Error while deleting the order.",
          success: false,
          error,
       });

@@ -24,6 +24,14 @@ const updateSingleOrderFromDB = async (orderId: string, orderInfo: IOrder) => {
 };
 
 const deleteSingleOrderFromDB = async (orderId: string) => {
+   // find if order exists or not using custom static method
+   const isOrderExist = await OrderModel.isOrderExist(orderId);
+
+   // if it does not exist, there is nothing to delete
+   if (!isOrderExist)
+      throw new Error("The order you are trying to delete, does not exist.");
+
+   // If the order exists, delete it.
    const result = await OrderModel.findByIdAndDelete(orderId);
    return result;
 };

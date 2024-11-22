@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
-import { IOrder } from "./orders.interface";
+import { IOrder, IOrderModel } from "./orders.interface";
 
-const orderSchema = new Schema<IOrder>(
+const orderSchema = new Schema<IOrder, IOrderModel>(
    {
       email: {
          type: String,
@@ -23,4 +23,9 @@ const orderSchema = new Schema<IOrder>(
    { timestamps: true }
 );
 
-export const OrderModel = model("order", orderSchema);
+orderSchema.statics.isOrderExist = async function (id: string) {
+   const result = await OrderModel.findById(id);
+   return result;
+};
+
+export const OrderModel = model<IOrder, IOrderModel>("order", orderSchema);
