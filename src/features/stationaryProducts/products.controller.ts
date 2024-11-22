@@ -11,7 +11,8 @@ const createProduct = async (req: Request, res: Response) => {
       // sanitize the product data using Zod
       const zodParsedProduct = productZodSchema.parse(productInfo);
 
-      // this will be executed once the product is parsed using zod
+      // product will be created once the product is parsed using zod
+      // else will thrown an Error
       const result = await ProductServices.createProductIntoDB(
          zodParsedProduct
       );
@@ -77,8 +78,9 @@ const updateSingleProduct = async (req: Request, res: Response) => {
    try {
       // receive the productId from the client's parameters
       const { productId } = req.params;
-      // receive the updated data from the client's body
+      // receive the data to be updated from the client's body
       const updateData = req.body;
+
       const result = await ProductServices.updateSingleProductFromDB(
          productId,
          updateData
