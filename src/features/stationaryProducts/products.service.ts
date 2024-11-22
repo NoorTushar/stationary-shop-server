@@ -27,6 +27,14 @@ const updateSingleProductFromDB = async (
 };
 
 const deleteAProductFromDB = async (id: string) => {
+   // using custom static method, first we will check if the product exists or not
+   // if it does not exist, then no point in deleting, we will throw and Error
+   const isProductExist = await ProductModel.isProductExist(id);
+
+   if (!isProductExist)
+      throw new Error("The product you are trying to delete does not exist.");
+
+   // if the product exists we will delete it
    const result = await ProductModel.findByIdAndDelete(id);
    return result;
 };

@@ -27,7 +27,7 @@ const createProduct = async (req: Request, res: Response) => {
       res.status(400).send({
          message: "Error while creating a product.",
          success: false,
-         error,
+         error: error,
       });
    }
 };
@@ -113,10 +113,10 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
          success: true,
          data: result,
       });
-   } catch (error) {
+   } catch (error: any) {
       console.log(error);
       res.status(400).send({
-         message: "Error while deleting the product.",
+         message: error.message || "Error while deleting the product.",
          success: false,
          error,
       });

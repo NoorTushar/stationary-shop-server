@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
-import { IProducts } from "./products.interface";
+import { IProducts, IProductsStaticModel } from "./products.interface";
 
-const productSchema = new Schema<IProducts>(
+const productSchema = new Schema<IProducts, IProductsStaticModel>(
    {
       name: {
          type: String,
@@ -58,4 +58,12 @@ const productSchema = new Schema<IProducts>(
    { timestamps: true }
 );
 
-export const ProductModel = model<IProducts>("product", productSchema);
+productSchema.statics.isProductExist = async function (id: string) {
+   const existingProduct = await ProductModel.findById(id);
+   return existingProduct;
+};
+
+export const ProductModel = model<IProducts, IProductsStaticModel>(
+   "product",
+   productSchema
+);
