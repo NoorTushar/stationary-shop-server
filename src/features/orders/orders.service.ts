@@ -17,7 +17,9 @@ const getSingleOrderFromDB = async (orderId: string) => {
 };
 
 const updateSingleOrderFromDB = async (orderId: string, orderInfo: IOrder) => {
-   const result = OrderModel.findByIdAndUpdate(orderId, orderInfo);
+   const result = OrderModel.findByIdAndUpdate(orderId, orderInfo, {
+      new: true,
+   });
    return result;
 };
 

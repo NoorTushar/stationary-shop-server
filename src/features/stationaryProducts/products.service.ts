@@ -20,7 +20,9 @@ const updateSingleProductFromDB = async (
    id: string,
    productData: IProducts
 ) => {
-   const result = await ProductModel.findByIdAndUpdate(id, productData);
+   const result = await ProductModel.findByIdAndUpdate(id, productData, {
+      new: true,
+   });
    return result;
 };
 
