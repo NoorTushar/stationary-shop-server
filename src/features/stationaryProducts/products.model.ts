@@ -24,6 +24,7 @@ const productSchema = new Schema<IProducts>(
       price: {
          type: Number,
          required: true,
+         min: [0, "Price must be a positive value"],
       },
       category: {
          type: String,
@@ -52,13 +53,9 @@ const productSchema = new Schema<IProducts>(
       inStock: {
          type: Boolean,
          required: true,
-         default: true,
       },
    },
    { timestamps: true }
 );
 
-export const ProductModel = model<IProducts>(
-   "stationaryProduct",
-   productSchema
-);
+export const ProductModel = model<IProducts>("product", productSchema);

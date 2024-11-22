@@ -13,7 +13,7 @@ const productZodSchema = z.object({
    ]),
    description: z.string(),
    quantity: z.number(),
-   inStock: z.boolean().default(true),
+   inStock: z.boolean(),
 });
 
 export default productZodSchema;

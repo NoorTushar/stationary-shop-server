@@ -5,9 +5,13 @@ import productZodSchema from "./products.validation";
 
 const createProduct = async (req: Request, res: Response) => {
    try {
+      // receive the product data from client's end
       const productInfo: IProducts = req.body;
+
+      // sanitize the product data using Zod
       const zodParsedProduct = productZodSchema.parse(productInfo);
 
+      // this will be executed once the product is parsed using zod
       const result = await ProductServices.createProductIntoDB(
          zodParsedProduct
       );
@@ -48,8 +52,10 @@ const getAllProducts = async (req: Request, res: Response) => {
 
 const getSingleProduct = async (req: Request, res: Response) => {
    try {
+      // receive the productId from the client's parameters
       const { productId } = req.params;
 
+      // using the productId, get the product information from the database
       const result = await ProductServices.getSingleProductFromDB(productId);
 
       res.status(200).send({
@@ -67,10 +73,37 @@ const getSingleProduct = async (req: Request, res: Response) => {
    }
 };
 
+const updateSingleProduct = async (req: Request, res: Response) => {
+   try {
+      // receive the productId from the client's parameters
+      const { productId } = req.params;
+      // receive the updated data from the client's body
+      const updateData = req.body;
+      const result = await ProductServices.updateSingleProductFromDB(
+         productId,
+         updateData
+      );
+      res.status(200).send({
+         message: "Product updated successfully",
+         success: true,
+         data: result,
+      });
+   } catch (error) {
+      console.log(error);
+      res.status(400).send({
+         message: "Error while updating the product.",
+         success: false,
+         error,
+      });
+   }
+};
+
 const deleteSingleProduct = async (req: Request, res: Response) => {
    try {
+      // receive the productId from the client's parameters
       const { productId } = req.params;
 
+      // using the productId, delete the product information from the database
       const result = await ProductServices.deleteAProductFromDB(productId);
 
       res.status(200).send({
@@ -92,5 +125,6 @@ export const ProductsController = {
    createProduct,
    getAllProducts,
    getSingleProduct,
+   updateSingleProduct,
    deleteSingleProduct,
 };
