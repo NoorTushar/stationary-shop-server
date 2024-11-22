@@ -1,6 +1,7 @@
 import express, { Response, Request, Application } from "express";
 import cors from "cors";
 import { ProductsRoutes } from "./features/stationaryProducts/products.route";
+import { StudentRoutes } from "./features/practiceModule/student.route";
 
 const app: Application = express();
 
@@ -11,6 +12,7 @@ app.use(express.text());
 app.use(cors());
 
 app.use("/api/products", ProductsRoutes);
+app.use("/api/students", StudentRoutes);
 
 app.get("/", (req: Request, res: Response) => {
    res.send("Hello from the server");
