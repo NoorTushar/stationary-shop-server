@@ -14,12 +14,10 @@ const orderSchema = new Schema<IOrder>(
       quantity: {
          type: Number,
          required: true,
-         min: [0, "Quantity must be a positive value"],
       },
       totalPrice: {
          type: Number,
          required: true,
-         min: [0, "Total order must be a positive value"],
       },
    },
    { timestamps: true }
