@@ -20,7 +20,7 @@ const createOrder = async (req: Request, res: Response) => {
    } catch (error) {
       console.log(error);
       res.status(400).send({
-         message: "Error while creating an order.",
+         message: error.message || "Error while creating an order.",
          success: false,
          error,
       });
@@ -118,10 +118,30 @@ const deleteSingleOrder = async (req: Request, res: Response) => {
    }
 };
 
+const getTotalOrderRevenue = async (req: Request, res: Response) => {
+   try {
+      const result = await OrderServices.getTotalOrderRevenueFromDB();
+
+      res.status(200).send({
+         message: "Revenue calculated successfully",
+         success: true,
+         data: result,
+      });
+   } catch (error) {
+      console.log(error);
+      res.status(400).send({
+         message: "Error while calculating total revenue.",
+         success: false,
+         error,
+      });
+   }
+};
+
 export const OrderController = {
    createOrder,
    getAllOrders,
    getSingleOrder,
    updateSingleOrder,
    deleteSingleOrder,
+   getTotalOrderRevenue,
 };
