@@ -52,6 +52,9 @@ const getAllOrdersFromDB = () => __awaiter(void 0, void 0, void 0, function* () 
 });
 const getSingleOrderFromDB = (orderId) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield orders_model_1.OrderModel.findById(orderId);
+    if (!result) {
+        throw new Error("The order you are trying to find does not exist.");
+    }
     return result;
 });
 const updateSingleOrderFromDB = (orderId, orderInfo) => __awaiter(void 0, void 0, void 0, function* () {

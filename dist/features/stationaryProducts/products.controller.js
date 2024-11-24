@@ -53,7 +53,7 @@ const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
     catch (error) {
         console.log(error);
-        res.status(400).send({
+        res.status(404).send({
             message: "Error while retrieving all products.",
             success: false,
             error,
@@ -75,9 +75,9 @@ const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, functio
     catch (error) {
         console.log(error);
         res.status(404).send({
-            message: "Error while retrieving the product.",
+            message: error.message || "Error while retrieving the product.",
             success: false,
-            error,
+            error: error,
         });
     }
 });
@@ -96,7 +96,7 @@ const updateSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, func
     }
     catch (error) {
         console.log(error);
-        res.status(400).send({
+        res.status(404).send({
             message: error.message || "Error while updating the product.",
             success: false,
             error,
@@ -118,7 +118,7 @@ const deleteSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, func
     }
     catch (error) {
         console.log(error);
-        res.status(400).send({
+        res.status(404).send({
             message: error.message || "Error while deleting the product.",
             success: false,
             error,

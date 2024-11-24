@@ -50,7 +50,7 @@ const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
     catch (error) {
         console.log(error);
-        res.status(400).send({
+        res.status(404).send({
             message: "Error while retrieving all orders.",
             success: false,
             error,
@@ -72,9 +72,9 @@ const getSingleOrder = (req, res) => __awaiter(void 0, void 0, void 0, function*
     catch (error) {
         console.log(error);
         res.status(404).send({
-            message: "Error while retrieving the order.",
+            message: error.message || "Error while retrieving the product.",
             success: false,
-            error,
+            error: error,
         });
     }
 });
@@ -132,7 +132,7 @@ const getTotalOrderRevenue = (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
     catch (error) {
         console.log(error);
-        res.status(400).send({
+        res.status(404).send({
             message: "Error while calculating total revenue.",
             success: false,
             error,

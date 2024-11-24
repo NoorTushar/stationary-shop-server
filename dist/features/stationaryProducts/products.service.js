@@ -36,6 +36,9 @@ const getAllProductsFromDB = (searchTerm) => __awaiter(void 0, void 0, void 0, f
 });
 const getSingleProductFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield products_model_1.ProductModel.findById(id);
+    if (!result) {
+        throw new Error("The product you are trying to find does not exist.");
+    }
     return result;
 });
 const updateSingleProductFromDB = (id, productData) => __awaiter(void 0, void 0, void 0, function* () {

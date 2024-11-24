@@ -1,5 +1,9 @@
 # Stationary Shop
 
+## Live Server Link:
+
+https://stationary-shop-server.vercel.app/
+
 ## 🟪 Technologies used:
 
 -  NodeJs/ ExpressJs as server
@@ -50,7 +54,7 @@
 
    API: `/api/products/:id`
 
-### Order CRUD APIs:
+### Order APIs:
 
 1. 🧭 Create an order into the database, based on the product id as reference.
 
@@ -61,35 +65,11 @@
 
    API: `/api/orders`
 
-2. 🧭 Get all order information.
-
-   Method: GET
-
-   API: `/api/orders`
-
-3. 🧭 Get total revenue from all orders combined.
+2. 🧭 Get total revenue from all orders combined.
 
    Method: GET
 
    API: `/api/orders/revenue`
-
-4. 🧭 Get a single order data using order id.
-
-   Method: GET
-
-   API: `/api/orders/:id`
-
-5. 🧭 Update a single order information.
-
-   Method: PUT
-
-   API: `/api/orders/:id`
-
-6. 🧭 Delete an order from the database.
-
-   Method: DELETE
-
-   API: `/api/orders/:id`
 
 ## 🟪 How to setup the project locally
 
