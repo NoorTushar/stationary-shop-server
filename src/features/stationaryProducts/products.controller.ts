@@ -34,7 +34,10 @@ const createProduct = async (req: Request, res: Response) => {
 
 const getAllProducts = async (req: Request, res: Response) => {
    try {
+      // taking query parameters from client
       const searchTerm = req.query.searchTerm as string;
+
+      // getting all the products, passing query as argument
       const result = await ProductServices.getAllProductsFromDB(searchTerm);
 
       res.status(200).send({
