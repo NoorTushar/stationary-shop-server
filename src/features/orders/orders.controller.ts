@@ -89,10 +89,10 @@ const updateSingleOrder = async (req: Request, res: Response) => {
          success: true,
          data: result,
       });
-   } catch (error) {
+   } catch (error: any) {
       console.log(error);
       res.status(400).send({
-         message: "Error while updating the order.",
+         message: error.message || "Error while updating the product.",
          success: false,
          error,
       });

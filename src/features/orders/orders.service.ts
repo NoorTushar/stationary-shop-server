@@ -55,6 +55,13 @@ const getSingleOrderFromDB = async (orderId: string) => {
 };
 
 const updateSingleOrderFromDB = async (orderId: string, orderInfo: IOrder) => {
+   // find if order exists or not using custom static method
+   const isOrderExist = await OrderModel.isOrderExist(orderId);
+
+   // if it does not exist, there is nothing to update
+   if (!isOrderExist)
+      throw new Error("The order you are trying to update, does not exist.");
+
    const result = OrderModel.findByIdAndUpdate(orderId, orderInfo, {
       new: true,
    });

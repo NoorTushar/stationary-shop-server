@@ -8,7 +8,7 @@ const createProductIntoDB = async (productData: IProducts) => {
 };
 
 const getAllProductsFromDB = async (searchTerm?: string) => {
-   const searchQuery: Record<string, any> = {}; // Typing it as a general object
+   const searchQuery: Record<string, any> = {};
    if (searchTerm) {
       searchQuery.$or = [
          {
@@ -36,6 +36,11 @@ const updateSingleProductFromDB = async (
    id: string,
    productData: IProducts
 ) => {
+   const isProductExist = await ProductModel.isProductExist(id);
+
+   if (!isProductExist)
+      throw new Error("The product you are trying to update does not exist.");
+
    const result = await ProductModel.findByIdAndUpdate(id, productData, {
       new: true,
    });
