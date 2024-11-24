@@ -51,6 +51,11 @@ const getAllOrdersFromDB = async () => {
 
 const getSingleOrderFromDB = async (orderId: string) => {
    const result = await OrderModel.findById(orderId);
+
+   if (!result) {
+      throw new Error("The order you are trying to find does not exist.");
+   }
+
    return result;
 };
 

@@ -29,6 +29,9 @@ const getAllProductsFromDB = async (searchTerm?: string) => {
 
 const getSingleProductFromDB = async (id: string) => {
    const result = await ProductModel.findById(id);
+   if (!result) {
+      throw new Error("The product you are trying to find does not exist.");
+   }
    return result;
 };
 

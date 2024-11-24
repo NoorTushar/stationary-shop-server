@@ -48,7 +48,7 @@ const getAllProducts = async (req: Request, res: Response) => {
       });
    } catch (error) {
       console.log(error);
-      res.status(400).send({
+      res.status(404).send({
          message: "Error while retrieving all products.",
          success: false,
          error,
@@ -69,12 +69,12 @@ const getSingleProduct = async (req: Request, res: Response) => {
          success: true,
          data: result,
       });
-   } catch (error) {
+   } catch (error: any) {
       console.log(error);
       res.status(404).send({
-         message: "Error while retrieving the product.",
+         message: error.message || "Error while retrieving the product.",
          success: false,
-         error,
+         error: error,
       });
    }
 };
@@ -97,7 +97,7 @@ const updateSingleProduct = async (req: Request, res: Response) => {
       });
    } catch (error: any) {
       console.log(error);
-      res.status(400).send({
+      res.status(404).send({
          message: error.message || "Error while updating the product.",
          success: false,
          error,
@@ -121,7 +121,7 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
    } catch (error: any) {
       console.log(error);
-      res.status(400).send({
+      res.status(404).send({
          message: error.message || "Error while deleting the product.",
          success: false,
          error,

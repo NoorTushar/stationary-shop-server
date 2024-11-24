@@ -6,7 +6,7 @@
 -  Mongoose as ODM
 -  MongoDB as database
 -  TypeScript
--  Zod
+-  Zod (Validation purpose)
 
 ## 🟪 Features
 
