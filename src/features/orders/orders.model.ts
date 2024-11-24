@@ -10,6 +10,7 @@ const orderSchema = new Schema<IOrder, IOrderModel>(
       product: {
          type: String,
          required: true,
+         ref: "products",
       },
       quantity: {
          type: Number,

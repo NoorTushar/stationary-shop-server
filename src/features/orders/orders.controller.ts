@@ -125,7 +125,7 @@ const getTotalOrderRevenue = async (req: Request, res: Response) => {
       res.status(200).send({
          message: "Revenue calculated successfully",
          success: true,
-         data: result,
+         data: result[0],
       });
    } catch (error) {
       console.log(error);
