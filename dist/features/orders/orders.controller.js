@@ -30,10 +30,12 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
     catch (error) {
         console.log(error);
+        // Type assertion to assume 'error' is an instance of Error
+        const err = error; // type assertion
         res.status(400).send({
-            message: error.message || "Error while creating an order.",
+            message: err.message || "Error while creating an order.",
             success: false,
-            error,
+            error: err,
         });
     }
 });

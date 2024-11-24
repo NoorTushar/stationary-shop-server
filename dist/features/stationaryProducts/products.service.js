@@ -10,14 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductServices = void 0;
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const products_model_1 = require("./products.model");
 const createProductIntoDB = (productData) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield products_model_1.ProductModel.create(productData);
     return result;
 });
 const getAllProductsFromDB = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
-    //
-    const searchQuery = {};
+    const searchQuery = {}; // Typing it as a general object
     if (searchTerm) {
         searchQuery.$or = [
             {

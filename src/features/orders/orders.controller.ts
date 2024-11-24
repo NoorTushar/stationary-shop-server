@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
 import { OrderServices } from "./orders.service";
 import orderZodSchema from "./orders.validation";
@@ -19,10 +20,13 @@ const createOrder = async (req: Request, res: Response) => {
       });
    } catch (error) {
       console.log(error);
+
+      // Type assertion to assume 'error' is an instance of Error
+      const err = error as Error; // type assertion
       res.status(400).send({
-         message: error.message || "Error while creating an order.",
+         message: err.message || "Error while creating an order.",
          success: false,
-         error,
+         error: err,
       });
    }
 };

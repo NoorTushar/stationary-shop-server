@@ -16,6 +16,6 @@ app.use((0, cors_1.default)());
 app.use("/api/products", products_route_1.ProductsRoutes);
 app.use("/api/orders", orders_route_1.OrderRoutes);
 app.get("/", (req, res) => {
-    res.send("Hello from the server");
+    res.send("Hello ⚡️ from the server");
 });
 exports.default = app;

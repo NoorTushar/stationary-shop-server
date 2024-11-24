@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ProductModel } from "./products.model";
 import { IProducts } from "./products.interface";
 
@@ -7,8 +8,7 @@ const createProductIntoDB = async (productData: IProducts) => {
 };
 
 const getAllProductsFromDB = async (searchTerm?: string) => {
-   //
-   const searchQuery = {};
+   const searchQuery: Record<string, any> = {}; // Typing it as a general object
    if (searchTerm) {
       searchQuery.$or = [
          {

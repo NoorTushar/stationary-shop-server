@@ -117,6 +117,7 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
          success: true,
          data: result,
       });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
    } catch (error: any) {
       console.log(error);
       res.status(400).send({
