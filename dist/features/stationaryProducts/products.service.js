@@ -17,7 +17,7 @@ const createProductIntoDB = (productData) => __awaiter(void 0, void 0, void 0, f
     return result;
 });
 const getAllProductsFromDB = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
-    const searchQuery = {}; // Typing it as a general object
+    const searchQuery = {};
     if (searchTerm) {
         searchQuery.$or = [
             {
@@ -39,6 +39,9 @@ const getSingleProductFromDB = (id) => __awaiter(void 0, void 0, void 0, functio
     return result;
 });
 const updateSingleProductFromDB = (id, productData) => __awaiter(void 0, void 0, void 0, function* () {
+    const isProductExist = yield products_model_1.ProductModel.isProductExist(id);
+    if (!isProductExist)
+        throw new Error("The product you are trying to update does not exist.");
     const result = yield products_model_1.ProductModel.findByIdAndUpdate(id, productData, {
         new: true,
     });

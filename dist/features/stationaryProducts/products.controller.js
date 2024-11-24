@@ -97,7 +97,7 @@ const updateSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, func
     catch (error) {
         console.log(error);
         res.status(400).send({
-            message: "Error while updating the product.",
+            message: error.message || "Error while updating the product.",
             success: false,
             error,
         });

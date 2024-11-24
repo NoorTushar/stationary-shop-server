@@ -55,6 +55,11 @@ const getSingleOrderFromDB = (orderId) => __awaiter(void 0, void 0, void 0, func
     return result;
 });
 const updateSingleOrderFromDB = (orderId, orderInfo) => __awaiter(void 0, void 0, void 0, function* () {
+    // find if order exists or not using custom static method
+    const isOrderExist = yield orders_model_1.OrderModel.isOrderExist(orderId);
+    // if it does not exist, there is nothing to update
+    if (!isOrderExist)
+        throw new Error("The order you are trying to update, does not exist.");
     const result = orders_model_1.OrderModel.findByIdAndUpdate(orderId, orderInfo, {
         new: true,
     });

@@ -10,7 +10,7 @@ const router = express_1.default.Router();
 router.post("/", orders_controller_1.OrderController.createOrder);
 router.get("/", orders_controller_1.OrderController.getAllOrders);
 router.get("/revenue", orders_controller_1.OrderController.getTotalOrderRevenue);
-router.get("/:orderId", orders_controller_1.OrderController.getSingleOrder);
 router.put("/:orderId", orders_controller_1.OrderController.updateSingleOrder);
+router.get("/:orderId", orders_controller_1.OrderController.getSingleOrder);
 router.delete("/:orderId", orders_controller_1.OrderController.deleteSingleOrder);
 exports.OrderRoutes = router;
